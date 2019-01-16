@@ -1,0 +1,2 @@
+myrtmp.c & myrtmp.h is a wrapper of librtmp(generated from rtmpdump project)
+and it supply APIs to wrapper h264&aac raw frame to the format that rtmp needed(some thing like flv format)
