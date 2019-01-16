@@ -69,11 +69,11 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 /**
 * the core provides the common defined macros, utilities,
-* user must include the srs_core.hpp before any header, or maybe 
+* user must include the srs_core.hpp before any header, or maybe
 * build failed.
 */
 
-// for 32bit os, 2G big file limit for unistd io, 
+// for 32bit os, 2G big file limit for unistd io,
 // ie. read/write/lseek to use 64bits size for huge file.
 #ifndef _FILE_OFFSET_BITS
     #define _FILE_OFFSET_BITS 64
@@ -132,8 +132,5 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  * only support the following cpus: i386/amd64/x86_64/arm
  * @reamrk to patch ST for arm, read https://github.com/ossrs/state-threads/issues/1
  */
-#if !defined(__amd64__) && !defined(__x86_64__) && !defined(__i386__) && !defined(__arm__)
-    #error "only support i386/amd64/x86_64/arm cpu"
-#endif
 
 #endif

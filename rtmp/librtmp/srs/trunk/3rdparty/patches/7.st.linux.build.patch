@@ -1,0 +1,23 @@
+--- Makefile	2019-01-10 14:11:52.185322855 +0800
++++ ../st-1.9-patch/Makefile	2019-01-10 14:37:39.273387220 +0800
+@@ -70,7 +70,8 @@ BUILD       = DBG
+ TARGETDIR   = $(OS)_$(shell uname -r)_$(BUILD)
+ 
+ DEFINES     = -D$(OS)
+-CFLAGS      =
++#steve_liu add
++CFLAGS      = --sysroot=$(DIR_ROOT)/toolchain/rsdk-4.8.5-5281-EL-3.10-u0.9.33-m32fut-161202/mips-linux-uclibc
+ SFLAGS      =
+ ARFLAGS     = -rv
+ LNFLAGS     = -s
+@@ -183,7 +184,9 @@ endif
+ ifeq ($(OS), LINUX)
+ EXTRA_OBJS  = $(TARGETDIR)/md.o
+ SFLAGS      = -fPIC
+-LDFLAGS     = -shared -soname=$(SONAME) -lc
++#steve_liu add
++LDFLAGS     = --sysroot=$(DIR_ROOT)/toolchain/rsdk-4.8.5-5281-EL-3.10-u0.9.33-m32fut-161202/mips-linux-uclibc \
++	      -shared -soname=$(SONAME) -lc
+ OTHER_FLAGS = -Wall
+ ifeq ($(shell test -f /usr/include/sys/epoll.h && echo yes), yes)
+ DEFINES     += -DMD_HAVE_EPOLL

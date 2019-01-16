@@ -66,6 +66,11 @@ endif
 ifeq ($(GCC), mipsel-openwrt-linux-gcc)
     EXTRA_CXX_FLAG = -g -O0 -ldl -lstdc++ -lgcc_eh
 endif
+#add by steve_liu
+# for mips, add -lgcc_eh, or stl compile failed.
+ifeq ($(GCC), rsdk-linux-gcc)
+    EXTRA_CXX_FLAG = -g -O0 -ldl -lstdc++ -lgcc_eh
+endif
 # for ssl or nossl
 ifeq ($(HANDSHAKE), SSL)
     SRS_LIBSSL_L = $(SRS_OBJS)/openssl/lib/libssl.a $(SRS_OBJS)/openssl/lib/libcrypto.a
