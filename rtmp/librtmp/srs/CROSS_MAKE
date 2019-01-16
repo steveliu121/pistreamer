@@ -1,0 +1,38 @@
+If you are using crossc compiling paltfrom you may build like this:
+---------------------------------------
+
+BUILD = $(shell pwd)/build
+SRCDIR = $(shell pwd)/trunk
+
+all: prepare rtmp install
+
+prepare:
+	mkdir -p $(BUILD)
+
+rtmp:
+	cd $(SRCDIR); \
+	export SrsArmCC=$(CC); \
+	export SrsArmGCC=$(CC); \
+	export SrsArmCXX=$(CXX); \
+	export SrsArmAR=$(AR); \
+	export SrsArmLD=$(LD); \
+	export SrsArmRANLIB=$(RANLIB); \
+	./configure \
+		--prefix=$(BUILD) \
+		--mips \
+		--with-ssl \
+		--with-hls \
+		--with-librtmp; \
+	cd $(SRCDIR); \
+	$(MAKE) librtmp GCC=$(CC) CXX=$(CXX) AR=$(AR) LINK=$(CXX); \
+	$(MAKE) install
+
+install:
+	cp $(SRCDIR)/objs/include/srs_librtmp.h /your/include/srs_librtmp.h
+	cp $(SRCDIR)/objs/lib/srs_librtmp.a /your/lib/srs_librtmp.a
+
+clean:
+	rm -rf $(BUILD); \
+	cd $(SRCDIR); \
+	$(MAKE) clean
+
