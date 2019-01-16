@@ -1,0 +1,4 @@
+You can chose any one as your rtmplib when you need to get a rtmplib and a rtmpserver
+If you need a rtmpserver running on emdbedded platform .e.g mips, then srs is recommend
+If you just need a rtmplib to build you rtmpclient, personaly rtmpdump is recommend, it builds more easy and
+it looks there's some bug for srs(it's aac dosen't support 8000Hz sample rate, seriously it just support 5.5kHz 11kHz 22kHz 44kHz).
