@@ -1,0 +1,24 @@
+If you are using crossc compiling paltfrom you may build like this:
+---------------------------------------
+
+BUILD = $(shell pwd)/build
+
+include common.mk
+
+all: prepare rtmp install
+
+prepare:
+	mkdir -p $(BUILD)
+
+rtmp:
+	$(MAKE) XLDFLAGS=$(LDFLAGS) SYS=posix CROSS_COMPILE=$(CROSS_COMPILE) INC=-I$(DIR_TMPFS)/include; \
+	$(MAKE) prefix=$(BUILD) install
+
+install:
+	cp $(BUILD)/include /your/include
+	cp $(BUILD)/lib /your/lib
+
+clean:
+	rm -rf $(BUILD); \
+	$(MAKE) clean
+
